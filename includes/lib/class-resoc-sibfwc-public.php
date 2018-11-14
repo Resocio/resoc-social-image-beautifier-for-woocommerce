@@ -34,6 +34,14 @@ class Resoc_SIBfWC_Public {
       return;
     }
 
+    $product_url = wp_get_canonical_url( $post_id );
+    if ( ! $product_url ) {
+      error_log("No product canonical URL");
+      return;
+    }
+    $separator = strpos( $post_url, '?' ) ? '&' : '?';
+    $product_url = $product_url . $separator . 'origin=shared_on_facebook';
+
     $image_data = wp_get_attachment_metadata( $image_id );
     if ( is_array( $image_data ) ) {
       $image_data['url'] = wp_get_attachment_image_url( $image_id, 'full' );
@@ -42,6 +50,7 @@ class Resoc_SIBfWC_Public {
         urlencode( $image_data['url'] ) . '">' . "\n";
       echo '<meta name="og:image:width" value="1200">' . "\n";
       echo '<meta name="og:image:height" value="630">' . "\n";
+      echo '<meta name="og:url" value="' . $product_url . '">' . "\n";
     }
   }
 
