@@ -1,5 +1,7 @@
 <?php
 
+require_once( 'includes/class-resoc-sibfwc.php' );
+
 /**
  * 
  * This file runs when the plugin in uninstalled (deleted).
@@ -14,4 +16,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// Do something here if plugin is being uninstalled.
+delete_option( Resoc_SIBfWC::OPTION_MERCHANT_ID );
+
+// Custom uninstall completed
