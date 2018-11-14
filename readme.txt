@@ -1,7 +1,7 @@
 === Resoc Social Image Beautifier for WooCommerce ===
 Contributors:  resoc
 Donate link: https://resoc.io/donate
-Tags: social, woocommerce, facebook, linkedin, opengraph, metadata, editor, wordpress, plugin
+Tags: social, woocommerce, facebook, linkedin, opengraph, metadata, wordpress, plugin
 Requires at least: 4.0
 Tested up to: 4.9.8
 Stable tag: 0.0.1

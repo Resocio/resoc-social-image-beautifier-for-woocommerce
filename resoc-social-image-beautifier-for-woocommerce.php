@@ -9,7 +9,7 @@
  * Requires at least: 4.0
  * Tested up to: 4.9.8
  *
- * Text Domain: resoc-social-editor
+ * Text Domain: resoc-social-image-beautifier-for-woocommerce
  * Domain Path: /lang/
  *
  * @package WordPress
@@ -23,19 +23,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 require_once( 'includes/class-resoc-sibfwc.php' );
 
 // Load plugin libraries
-require_once( 'includes/lib/class-resoc-sibfwc-admin-api.php' );
+require_once( 'includes/lib/class-resoc-sibfwc-admin.php' );
 require_once( 'includes/lib/class-resoc-sibfwc-public.php' );
 
 /**
- * Returns the main instance of Resoc_Social_Editor to prevent the need to use globals.
+ * Returns the main instance of Resoc_SIBfWC to prevent the need to use globals.
  *
  * @since  1.0.0
- * @return object Resoc_Social_Editor
+ * @return object Resoc_SIBfWC
  */
-function Resoc_Social_Editor () {
+function Resoc_SIBfWC () {
 	$instance = Resoc_SIBfWC::instance( __FILE__, '0.0.1' );
 
 	return $instance;
 }
 
-Resoc_Social_Editor();
+Resoc_SIBfWC();

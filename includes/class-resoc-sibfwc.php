@@ -13,7 +13,7 @@ class Resoc_SIBfWC {
 
 
 	/**
-	 * The single instance of Resoc_Social_Editor.
+	 * The single instance of Resoc_SIBfWC.
 	 * @var 	object
 	 * @access  private
 	 * @since 	1.0.0
@@ -92,7 +92,7 @@ class Resoc_SIBfWC {
 	 */
 	public function __construct ( $file = '', $version = '1.0.0' ) {
 		$this->_version = $version;
-		$this->_token = 'resoc_social_editor';
+		$this->_token = 'resoc_sibfwc';
 
 		// Load plugin environment variables
 		$this->file = $file;
@@ -106,51 +106,22 @@ class Resoc_SIBfWC {
 
 		// Load API for generic admin functions
 		if ( is_admin() ) {
-			new Resoc_Social_Editor_Admin_API();
+			new Resoc_SIBfWC_Admin();
 		}
 		else {
-			new Resoc_Social_Editor_Public();
+			new Resoc_SIBfWC_Public();
 		}
-
-		// Handle localisation
-		$this->load_plugin_textdomain();
-		add_action( 'init', array( $this, 'load_localisation' ), 0 );
 	} // End __construct ()
 
 	/**
-	 * Load plugin localisation
-	 * @access  public
-	 * @since   1.0.0
-	 * @return  void
-	 */
-	public function load_localisation () {
-		load_plugin_textdomain( 'resoc-social-editor', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
-	} // End load_localisation ()
-
-	/**
-	 * Load plugin textdomain
-	 * @access  public
-	 * @since   1.0.0
-	 * @return  void
-	 */
-	public function load_plugin_textdomain () {
-	    $domain = 'resoc-social-editor';
-
-	    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-
-	    load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-	    load_plugin_textdomain( $domain, false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
-	} // End load_plugin_textdomain ()
-
-	/**
-	 * Main Resoc_Social_Editor Instance
+	 * Main Resoc_SIBfWC Instance
 	 *
-	 * Ensures only one instance of Resoc_Social_Editor is loaded or can be loaded.
+	 * Ensures only one instance of Resoc_SIBfWC is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
 	 * @static
-	 * @see Resoc_Social_Editor()
-	 * @return Main Resoc_Social_Editor instance
+	 * @see Resoc_SIBfWC()
+	 * @return Main Resoc_SIBfWC instance
 	 */
 	public static function instance ( $file = '', $version = '1.0.0' ) {
 		if ( is_null( self::$_instance ) ) {
@@ -196,60 +167,4 @@ class Resoc_SIBfWC {
 	private function _log_version_number () {
 		update_option( $this->_token . '_version', $this->_version );
 	} // End _log_version_number ()
-
-
-
-
-	/**
-	 * Returns /www/wordpress/wp-content/uploaded/rse
-	 */
-	public static function get_files_dir( $post_id = NULL ) {
-		$up_dir = wp_upload_dir();
-		return $up_dir['basedir'] . '/' .
-			Resoc_Social_Editor::PLUGIN_PREFIX . '/' .
-			( $post_id ? $post_id . '/' : '' );
-	}
-
-	/**
-	 * Returns http//somesite.com/blog/wp-content/upload/rse/
-	 */
-	public static function get_files_url( $post_id ) {
-		$up_dir = wp_upload_dir();
-		$base_url = $up_dir['baseurl'];
-		// Make sure to no duplicate the '/'
-		// This is especially important when the base URL is the root directory:
-		// When this happens, the generated URL would be
-		// "http//somesite.com//fbrfg/" and then "//fbrfg/" when the host name is
-		// stripped. But this path is wrong, as it looks like a "same protocol" URL.
-		$separator = (substr($base_url, -1) == '/') ? '' : '/';
-		return $base_url . $separator .
-			Resoc_Social_Editor::PLUGIN_PREFIX . '/' . $post_id . '/';
-	}
-
-	public static function get_tmp_dir() {
-		return Resoc_Social_Editor::get_files_dir() . 'tmp/';
-	}
-
-	public static function remove_directory($directory) {
-		foreach( scandir( $directory ) as $v ) {
-			if ( is_dir( $directory . '/' . $v ) ) {
-				if ( $v != '.' && $v != '..' ) {
-					Resoc_Social_Editor::remove_directory( $directory . '/' . $v );
-				}
-			}
-			else {
-				unlink( $directory . '/' . $v );
-			}
-		}
-		rmdir( $directory );
-	}
-
-	// See https://www.justinsilver.com/technology/writing-to-the-php-error_log-with-var_dump-and-print_r/
-	public static function var_error_log( $object = NULL ) {
-		ob_start();
-		var_dump( $object );
-		$contents = ob_get_contents();
-		ob_end_clean();
-		error_log( $contents );
-	}
 }

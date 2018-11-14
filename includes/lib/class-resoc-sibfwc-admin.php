@@ -4,7 +4,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Resoc_Social_Editor_Admin_API {
+class Resoc_SIBfWC_Admin {
 
 	/**
 	 * Constructor function
@@ -24,11 +24,11 @@ class Resoc_Social_Editor_Admin_API {
       'Resoc Social Image Beautifier for WooCommerce',
       'manage_options',
       Resoc_SIBfWC::MENU_SETTINGS,
-      array( $this, 'create_social_editor_settings_page' )
+      array( $this, 'create_sibfwc_settings_page' )
     );
   }
 
-  public function create_social_editor_settings_page() {
+  public function create_sibfwc_settings_page() {
     $admin_url = admin_url(
       'options-general.php?page=' . Resoc_SIBfWC::MENU_SETTINGS
     );

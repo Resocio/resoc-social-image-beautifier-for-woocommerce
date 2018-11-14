@@ -4,22 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 require_once plugin_dir_path( __FILE__ ) . 'class-resoc-sibfwc-utils.php';
 
-class Resoc_Social_Editor_Public {
+class Resoc_SIBfWC_Public {
 
 	public function __construct () {
 		// Disable Jetpack Open Graph markups
     add_filter( 'jetpack_enable_open_graph', '__return_false' );
 
-    if ( Resoc_SIBfWC_Utils::is_yoast_seo_active() ) {
-      add_filter(
-        'wpseo_add_opengraph_images',
-        array( $this, 'get_og_image' )
-      );
-    }
-    else {
-      // No Yoast, add markups manually
-      add_action( 'wp_head', array( $this, 'add_opengraph_markups' ) );
-    }
+    add_action( 'wp_head', array( $this, 'add_opengraph_markups' ) );
   }
 
   public function add_opengraph_markups() {
@@ -51,18 +42,6 @@ class Resoc_Social_Editor_Public {
         urlencode( $image_data['url'] ) . '">' . "\n";
       echo '<meta name="og:image:width" value="1200">' . "\n";
       echo '<meta name="og:image:height" value="630">' . "\n";
-    }
-  }
-
-  public function get_og_image( $wpseo_opengraph_image ) {
-    $post_id = get_the_ID();
-    $specific_image_id = get_post_meta(
-      $post_id,
-      Resoc_Social_Editor::OG_IMAGE_ID,
-      true
-    );
-    if ( $specific_image_id ) {
-      $wpseo_opengraph_image->add_image_by_id( $specific_image_id );
     }
   }
 
