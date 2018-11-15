@@ -48,12 +48,12 @@ class Resoc_SIBfWC_Public {
       $product_page_title = get_the_title( $post_id );
 
       // OpenGraph (Facebook, LinkedIn...)
-      echo '<meta name="og:image" value="' .
+      echo '<meta property="og:image" content="' .
         "http://resoc.io/api/to-fb?" . $site_string . "imageUrl=" .
-        urlencode( $image_data['url'] ) . '">' . "\n";
-      echo '<meta name="og:image:width" value="1200">' . "\n";
-      echo '<meta name="og:image:height" value="630">' . "\n";
-      echo '<meta name="og:url" value="' . $product_url . '">' . "\n";
+        $image_data['url'] . '">' . "\n";
+      echo '<meta property="og:image:width" content="1200">' . "\n";
+      echo '<meta property="og:image:height" content="630">' . "\n";
+      echo '<meta property="og:url" content="' . $product_url . '">' . "\n";
 
       // Twitter card
       echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
