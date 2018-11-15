@@ -38,6 +38,12 @@ Installing "Resoc Social Image Beautifier for WooCommerce" can be done either by
 2. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your WordPress dashboard
 3. Activate the plugin through the 'Plugins' menu in WordPress
 
+== Screenshots ==
+
+1. Currently, your product images are probably too small or your products are probably cropped when your customers share them on social networks.
+2. Install and activate the plugin. After Facebook has fetched your updated product pages, the product images are perfect. Good job!
+3. Visit the plugin settings to add your branding to the product images for social networks.
+
 == Changelog ==
 
 = 0.0.1 =
