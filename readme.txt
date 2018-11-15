@@ -1,7 +1,7 @@
 === Resoc Social Image Beautifier for WooCommerce ===
 Contributors:  resoc
 Donate link: https://resoc.io/donate
-Tags: social, woocommerce, facebook, linkedin, opengraph, metadata, wordpress, plugin
+Tags: woocommerce, social, facebook, linkedin, opengraph, metadata, wordpress, plugin
 Requires at least: 4.0
 Tested up to: 4.9.8
 Stable tag: 0.0.1
@@ -17,7 +17,9 @@ Visit your favorite eCommerce site and share one of its products on Facebook: th
 
 Only one site is doing it right: Amazon. When an Amazon product page is shared on social networks, the product is framed, and you can see the Amazon Prime logo along with the "stars" the product recieved through reviews.
 
-With this plugin, your products are just perfect. Automatically.
+With this plugin, your products are just perfect. Automatically. Install this plugin, activate it, and this task is over.
+
+What if your customers's friends and followers could see your logo along with your products? You can do that, too.
 
 In the background, the plugin is using the [Resoc API](https://resoc.io/) to generate images that perfectly match Facebook recommandations.
 
@@ -26,6 +28,7 @@ In the background, the plugin is using the [Resoc API](https://resoc.io/) to gen
 * **Cropping** Your products are framed to fit social networks requirements.
 * **Brand awareness** Your logo is visible.
 * **Automated** You have nothing to do. Everything is handled for you in the background.
+* **Non invasive** The plugin does *not* generate or modify any image or file. You can remove it anytime and fallback on the old procuct images.
 
 == Installation ==
 
