@@ -6,12 +6,12 @@
 		<table class="form-table">
 			<tbody>
 				<tr>
-					<th scope="row">Merchant Id</th>
+					<th scope="row">Resoc Site Id</th>
 					<td>
             <input
               type="text"
-              name="<?php echo Resoc_SIBfWC::OPTION_MERCHANT_ID ?>"
-              value="<?php echo $merchant_id ?>"
+              name="<?php echo Resoc_SIBfWC::OPTION_RESOC_SITE_ID ?>"
+              value="<?php echo $site_id ?>"
             />
 					</td>
 				</tr>

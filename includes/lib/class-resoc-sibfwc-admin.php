@@ -33,7 +33,7 @@ class Resoc_SIBfWC_Admin {
       'options-general.php?page=' . Resoc_SIBfWC::MENU_SETTINGS
     );
 
-    $merchant_id = get_option( Resoc_SIBfWC::OPTION_MERCHANT_ID );
+    $site_id = get_option( Resoc_SIBfWC::OPTION_RESOC_SITE_ID );
 
     include_once( plugin_dir_path(__FILE__) . '../../views' . DIRECTORY_SEPARATOR . 'settings.php' );
   }
@@ -43,8 +43,8 @@ class Resoc_SIBfWC_Admin {
       isset( $_REQUEST[Resoc_SIBfWC::SETTINGS_FORM] ) &&
       '1' == $_REQUEST[Resoc_SIBfWC::SETTINGS_FORM]
     ) {
-      $merchant_id = $_REQUEST[Resoc_SIBfWC::OPTION_MERCHANT_ID];
-      update_option( Resoc_SIBfWC::OPTION_MERCHANT_ID, $merchant_id );
+      $site_id = $_REQUEST[Resoc_SIBfWC::OPTION_RESOC_SITE_ID];
+      update_option( Resoc_SIBfWC::OPTION_RESOC_SITE_ID, $site_id );
     }
   }
 

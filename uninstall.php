@@ -16,6 +16,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_option( Resoc_SIBfWC::OPTION_MERCHANT_ID );
+delete_option( Resoc_SIBfWC::OPTION_RESOC_SITE_ID );
 
 // Custom uninstall completed

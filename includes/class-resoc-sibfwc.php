@@ -6,7 +6,7 @@ class Resoc_SIBfWC {
 
   const PLUGIN_PREFIX = 'rsibfwc';
 
-  const OPTION_MERCHANT_ID = 'rsibfwc_merchant_id';
+  const OPTION_RESOC_SITE_ID = 'rsibfwc_resoc_site_id';
 
   const SETTINGS_FORM = "rsibfwc_settings_form";
   const MENU_SETTINGS = 'rsibfwc_settings_menu';

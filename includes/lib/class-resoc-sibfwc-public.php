@@ -27,10 +27,10 @@ class Resoc_SIBfWC_Public {
       return;
     }
 
-    $merchant_string = '';
-    $merchant_id = get_option( Resoc_SIBfWC::OPTION_MERCHANT_ID );
-    if ( $merchant_id ) {
-      $merchant_string = 'merchant=' . $merchant_id . '&';
+    $site_string = '';
+    $site_id = get_option( Resoc_SIBfWC::OPTION_RESOC_SITE_ID );
+    if ( $site_id ) {
+      $site_string = 'merchant=' . $site_id . '&';
     }
 
     $product_url = wp_get_canonical_url( $post_id );
@@ -45,7 +45,7 @@ class Resoc_SIBfWC_Public {
     if ( is_array( $image_data ) ) {
       $image_data['url'] = wp_get_attachment_image_url( $image_id, 'full' );
       echo '<meta name="og:image" value="' .
-        "http://resoc.io/api/to-fb?" . $merchant_string . "imageUrl=" .
+        "http://resoc.io/api/to-fb?" . $site_string . "imageUrl=" .
         urlencode( $image_data['url'] ) . '">' . "\n";
       echo '<meta name="og:image:width" value="1200">' . "\n";
       echo '<meta name="og:image:height" value="630">' . "\n";
