@@ -2,6 +2,16 @@
 	<?php screen_icon() ?>
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
+  <p>
+    By default, Resoc Social Image Beautifier for WooCommerce crops your
+    product images automatically when they are shared on social networks.
+  </p>
+
+  <p>
+    By providing a <strong>Resoc Site Id</strong>, you can add your logo or name
+    to the images and let your customers's friends and followers notice your brand.
+  </p>
+
 	<form action="<?php echo $admin_url ?>" method="post" id="rsibfwc-settings-form">
 		<table class="form-table">
 			<tbody>
