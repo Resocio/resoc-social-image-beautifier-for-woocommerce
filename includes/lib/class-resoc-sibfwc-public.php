@@ -10,13 +10,21 @@ class Resoc_SIBfWC_Public {
 		// Disable Jetpack Open Graph markups
     add_filter( 'jetpack_enable_open_graph', '__return_false' );
 
-    add_action( 'wp_head', array( $this, 'add_opengraph_markups' ) );
+    if ( Resoc_SIBfWC_Utils::is_yoast_seo_active() ) {
+      add_filter(
+        'wpseo_add_opengraph_images',
+        array( $this, 'add_image_for_wpseo' )
+      );
+    }
+    else {
+      add_action( 'wp_head', array( $this, 'add_opengraph_markups' ) );
+    }
   }
 
   public function add_opengraph_markups() {
     $post_id = get_the_ID();
 
-    if ( get_post_field( 'post_type', $post_id ) !== 'product' ) {
+    if ( ! Resoc_SIBfWC_Utils::is_product( $post_id ) ) {
       error_log("Not a product");
       return;
     }
@@ -49,5 +57,24 @@ class Resoc_SIBfWC_Public {
     echo '<meta name="twitter:title" content="' . htmlspecialchars( $product_page_title ) . '">' . "\n";
     echo '<meta name="twitter:image" content="' .
       Resoc_SIBfWC_Utils::get_twitter_image_url( $image_url ) . '">' . "\n";
+  }
+
+  public function add_image_for_wpseo( $wpseo_opengraph_image ) {
+    $post_id = get_the_ID();
+
+    if ( ! Resoc_SIBfWC_Utils::is_product( $post_id ) ) {
+      return;
+    }
+
+    $facebook_image_url =
+      Resoc_SIBfWC_Utils::get_facebook_image_url(
+        Resoc_SIBfWC_Utils::get_post_image_url( $post_id )
+      );
+
+    $wpseo_opengraph_image->add_image( array(
+      'url' => $facebook_image_url,
+      'width' => 1200,
+      'height' => 630
+    ) );
   }
 }

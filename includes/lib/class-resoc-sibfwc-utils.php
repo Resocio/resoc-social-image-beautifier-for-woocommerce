@@ -99,6 +99,10 @@ class Resoc_SIBfWC_Utils {
       $site_string = 'merchant=' . $site_id . '&';
     }
 
-    return 'http://resoc.io/api/to-' . $social_network . '?' . $site_string . 'imageUrl=' . $image_url;
+    return 'http://resoc.io/api/to-' . $social_network . '.jpg?' . $site_string . 'imageUrl=' . $image_url;
+  }
+
+  public static function is_product( $post_id ) {
+    return ( get_post_field( 'post_type', $post_id ) === 'product' );
   }
 }
