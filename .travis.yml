@@ -1,0 +1,28 @@
+language: php
+php:
+- 7.0
+
+script:
+# Override default Travis script action [phpunit]
+- php -l *.php
+
+branches:
+  only:
+  # Enable Travis hook on tags (there is regular expression for semver tag)*
+  - "/\\d\\.\\d\\.\\d/"
+
+# Enable Travis deployment
+deploy:
+  # Use script as a deployment tool
+  provider: script
+  script: deploy/deploy.sh
+  # Restrict deployment only for tags
+  on:
+    tags: true
+
+# Deployment script requires few enviromnet variables
+env:
+  global:
+  - SVN_REPOSITORY=http://plugins.svn.wordpress.org/resoc-social-image-beautifier-for-woocommerce/
+  - secure: mFiyTUmMO/dJiHVragYCvu8E1lzlKtnyhka5utdFShsh0bgLzgJKfJrYTAJbhv/kfsFeT4TfQoX9MI9j5y3B/yxZDFfF7FkvQEPaSpolN9CljKbinBaTuMFMCgQ19YcmZemDUTgyylOP9VEHchG64vEld3S1O7e3/wL8TnYC4P7dDARoQNw94pApnnyD04912zmoJDq2KMuB5Waeni51VcPwgSqo3a8SEv2IecTMJHZh9HvL8Y9Ki+ekZ2gYJ4Ohr8v/s4+GVzg6bn7+6JXK7DDapbMGzx31oUXl12aKL9SHg3rL8MIvruQqIt0O9tkbV8lRvBFF3cCZAl3iA/zFRhnL/z1m+YZocR/49GHTUSSRQmOeuZL9Pkp40awry63qYtpSqBsEqWi8Rem8eqhdk+94wBrdey3heYwfiTtcIY93c7ueGq8uVC9eKYLMH++MW2WSBIRBTCtQMV5RgI1Kwb632omZDdHVUksJmt65U7g66hfSRThv5utFUnKPfxnpfz9FJwetTkRO1NGBEsC+3rSce3yBp1h8hUsfjBBRZdWnecRZKXBAW+4z44oGWwjR99nUkl9M+81Ol7YhE/tnn9cIJ9W/KDmxOV7YQaVoLOvYbi056ZiVkM+Oxoz7FKRuggYhHYAjMfBECQe0rfu7l4+UYWsWFynl6bWEVr0u3q8=
+  - secure: KU5haOC10SUZ4dZtIYoyRfrLgskhqr/lyLA7Hk8EgKlZd+xLITtrBWOmh8NLLzI/5QbRIzW6+FiTZ+QwMpMasduGIjf0TwMSiWhutkYb5g7+s76kDTwUkkaqXi/NOiT9zy5F4aD2JgFR288ofZG0baii+u0ylQ4Ne/S7yjdIdZMEanLjajTL9JTafwYDwknTc28NZHCq9XKywQN+XgtQAAnfE164Nl7UyzHCSsO8jCQRoGbHCR5yO8m3i9j1vq9f3Tyic5kCGdZgnsKGZVauN6ral03xu+3aywvIjqLMYE6bdGN+6gLxJAww9nedUpoCrL7dZwoQi/GtKzCOSS2DbXNrpYiIk6E7aeC0ULpXFJK0cCmPWdDZp5pFvu24LMVxBzIWi49+JUdPyFhvSI8vnPKZ3VSPsG1MTGahA1E26I700DFUpPMPbAaxtuAR2wqBP4HpKzHwOeQYRD0abtbo83W5+l7AY+Rv84UvKepPRcdukcvvheHm4mvgLiBmxuFr1mFksivKKwMPLGeFuB3HaxxIqnlUZnMqmZ2gtQUWi/KCPrYkjjhs2usDkUhtXUXDHcYvTpIBXaIbNoF5JTxzlKMkYXNLsOmii8DEIlqpvrSGASnbBCLrBvdNlCXkoDc/s9BeL2GL735Gq2PNZKjBwQYXatpM0QvWCPGr3ltt1xo=
