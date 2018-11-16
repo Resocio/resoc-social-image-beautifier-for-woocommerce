@@ -6,6 +6,9 @@ require_once plugin_dir_path( __FILE__ ) . 'class-resoc-sibfwc-utils.php';
 
 class Resoc_SIBfWC_Public {
 
+  const OG_IMAGE_WIDTH = 1200;
+  const OG_IMAGE_HEIGHT = 630;
+
 	public function __construct () {
 		// Disable Jetpack Open Graph markups
     add_filter( 'jetpack_enable_open_graph', '__return_false' );
@@ -52,8 +55,10 @@ class Resoc_SIBfWC_Public {
     echo '<meta property="og:image" content="' .
       Resoc_SIBfWC_Utils::get_facebook_image_url( $image_url ) .
       '">' . "\n";
-    echo '<meta property="og:image:width" content="1200">' . "\n";
-    echo '<meta property="og:image:height" content="630">' . "\n";
+    echo '<meta property="og:image:width" content="' .
+      Resoc_SIBfWC_Public::OG_IMAGE_WIDTH . '">' . "\n";
+    echo '<meta property="og:image:height" content="' .
+      Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT . '">' . "\n";
     echo '<meta property="og:url" content="' . $product_url . '">' . "\n";
 
     // Twitter card
@@ -79,8 +84,8 @@ class Resoc_SIBfWC_Public {
 
     $wpseo_opengraph_image->add_image( array(
       'url' => $facebook_image_url,
-      'width' => 1200,
-      'height' => 630
+      'width' => Resoc_SIBfWC_Public::OG_IMAGE_WIDTH,
+      'height' => Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT
     ) );
   }
 
