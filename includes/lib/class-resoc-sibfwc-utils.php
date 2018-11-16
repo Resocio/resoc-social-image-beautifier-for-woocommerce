@@ -66,4 +66,39 @@ class Resoc_SIBfWC_Utils {
   public static function time_to_filename_fragment() {
     return date('Ymd-his');
   }
+
+
+  public static function get_post_image_url( $post_id ) {
+    $image_id = get_post_meta( $post_id, '_thumbnail_id', true );
+    if ( ! $image_id ) {
+      error_log("No image id for post " . $post_id );
+      return NULL;
+    }
+
+    $image_url = wp_get_attachment_image_url( $image_id, 'full' );
+    if (! $image_url ) {
+      error_log("No image URL for post " . $post_id . " and image " . $image_id );
+      return NULL;
+    }
+
+    return $image_url;
+  }
+
+  public static function get_facebook_image_url( $image_url ) {
+    return Resoc_SIBfWC_Utils::get_social_network_image_url( 'fb', $image_url );
+  }
+
+  public static function get_twitter_image_url( $image_url ) {
+    return Resoc_SIBfWC_Utils::get_social_network_image_url( 'twitter', $image_url );
+  }
+
+  public static function get_social_network_image_url( $social_network, $image_url ) {
+    $site_string = '';
+    $site_id = get_option( Resoc_SIBfWC::OPTION_RESOC_SITE_ID );
+    if ( $site_id ) {
+      $site_string = 'merchant=' . $site_id . '&';
+    }
+
+    return 'http://resoc.io/api/to-' . $social_network . '?' . $site_string . 'imageUrl=' . $image_url;
+  }
 }
