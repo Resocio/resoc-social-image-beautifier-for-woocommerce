@@ -17,11 +17,11 @@ class Resoc_SIBfWC_Public {
       );
     }
     else {
-      add_action( 'wp_head', array( $this, 'add_opengraph_markups' ) );
+      add_action( 'wp_head', array( $this, 'add_social_markups' ) );
     }
   }
 
-  public function add_opengraph_markups() {
+  public function add_social_markups() {
     $post_id = get_the_ID();
 
     if ( ! Resoc_SIBfWC_Utils::is_product( $post_id ) ) {
