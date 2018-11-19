@@ -3,8 +3,8 @@ Contributors:  resoc
 Donate link: https://resoc.io/donate
 Tags: woocommerce, social, facebook, linkedin, opengraph, metadata, wordpress, plugin
 Requires at least: 4.0
-Tested up to: 4.9.8
-Stable tag: 0.0.1
+Tested up to: 5.0-beta5
+Stable tag: 0.0.2
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -45,6 +45,10 @@ Installing "Resoc Social Image Beautifier for WooCommerce" can be done either by
 3. Visit the plugin settings to add your branding to the product images for social networks.
 
 == Changelog ==
+
+= 0.0.2 =
+
+* Plugin was tested up to WordPress 5.0-beta5
 
 = 0.0.1 =
 
