@@ -87,6 +87,11 @@ class Resoc_SIBfWC_Public {
       'width' => Resoc_SIBfWC_Public::OG_IMAGE_WIDTH,
       'height' => Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT
     ) );
+
+    // TODO: https://wordpress.org/plugins/wonderm00ns-simple-facebook-open-graph-tags/
+    //$user_options = get_option( 'wonderm00n_open_graph_settings' );
+		//if ( isset( $user_options[ 'fb_image_show' ] ) ) ...
+
   }
 
   public function add_twitter_image_for_wpseo( ) {
