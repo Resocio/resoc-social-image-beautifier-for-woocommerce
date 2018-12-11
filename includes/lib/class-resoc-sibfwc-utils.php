@@ -90,22 +90,46 @@ class Resoc_SIBfWC_Utils {
     return $image_url;
   }
 
-  public static function get_facebook_image_url( $image_url ) {
-    return Resoc_SIBfWC_Utils::get_social_network_image_url( 'fb', $image_url );
+  public static function get_facebook_image_url( $post_id ) {
+    return Resoc_SIBfWC_Utils::get_social_network_image_url( 'fb', $post_id );
   }
 
-  public static function get_twitter_image_url( $image_url ) {
-    return Resoc_SIBfWC_Utils::get_social_network_image_url( 'twitter', $image_url );
+  public static function get_twitter_image_url( $post_id ) {
+    return Resoc_SIBfWC_Utils::get_social_network_image_url( 'twitter', $post_id );
   }
 
-  public static function get_social_network_image_url( $social_network, $image_url ) {
+  public static function get_social_network_image_url( $social_network, $post_id ) {
+    $image_url = Resoc_SIBfWC_Utils::get_post_image_url( $post_id );
+    if ( ! $image_url ) {
+      return NULL;
+    }
+
     $site_string = '';
     $site_id = get_option( Resoc_SIBfWC::OPTION_RESOC_SITE_ID );
     if ( $site_id ) {
       $site_string = 'merchant=' . $site_id . '&';
     }
 
-    return 'http://resoc.io/api/to-' . $social_network . '.jpg?' . $site_string . 'imageUrl=' . $image_url;
+    $product = wc_get_product( $post_id );
+    $stars = NULL;
+    if ( $product ) {
+      $rating_count = $product->get_rating_count();
+      $stars = $product->get_average_rating();
+      error_log(
+        "Product " . $post_id . " has " . $rating_count .
+        " reviews, with an average score of " . $stars
+      );
+      if ( $rating_count <= 0 ) {
+        $stars = NULL;
+      }
+    }
+    else {
+      error_log("Post " . $post_id . " is not a WooCommerce product");
+    }
+
+    return 'http://resoc.io/api/to-' . $social_network . '.jpg' .
+      '?' . $site_string . 'imageUrl=' . $image_url .
+      ( ( $stars !== NULL ) ? '&stars=' . $stars : '' );
   }
 
   public static function is_product( $post_id ) {

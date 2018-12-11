@@ -56,28 +56,29 @@ class Resoc_SIBfWC_Public {
     $separator = strpos( $post_url, '?' ) ? '&' : '?';
     $product_url = $product_url . $separator . 'origin=shared_on_facebook';
 
-    $image_url = Resoc_SIBfWC_Utils::get_post_image_url( $post_id );
-    if ( ! $image_url ) {
-      return;
-    }
-
     $product_page_title = get_the_title( $post_id );
 
     // OpenGraph (Facebook, LinkedIn...)
-    echo '<meta property="og:image" content="' .
-      Resoc_SIBfWC_Utils::get_facebook_image_url( $image_url ) .
-      '">' . "\n";
-    echo '<meta property="og:image:width" content="' .
-      Resoc_SIBfWC_Public::OG_IMAGE_WIDTH . '">' . "\n";
-    echo '<meta property="og:image:height" content="' .
-      Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT . '">' . "\n";
-    echo '<meta property="og:url" content="' . $product_url . '">' . "\n";
+    $facebook_image_url = Resoc_SIBfWC_Utils::get_facebook_image_url( $post_id );
+    if ( $facebook_image_url ) {
+      echo '<meta property="og:image" content="' .
+      $facebook_image_url .
+        '">' . "\n";
+      echo '<meta property="og:image:width" content="' .
+        Resoc_SIBfWC_Public::OG_IMAGE_WIDTH . '">' . "\n";
+      echo '<meta property="og:image:height" content="' .
+        Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT . '">' . "\n";
+      echo '<meta property="og:url" content="' . $product_url . '">' . "\n";
+    }
 
     // Twitter card
-    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
-    echo '<meta name="twitter:title" content="' . htmlspecialchars( $product_page_title ) . '">' . "\n";
-    echo '<meta name="twitter:image" content="' .
-      Resoc_SIBfWC_Utils::get_twitter_image_url( $image_url ) . '">' . "\n";
+    $twitter_image_url = Resoc_SIBfWC_Utils::get_twitter_image_url( $post_id );
+    if ( $twitter_image_url ) {
+      echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+      echo '<meta name="twitter:title" content="' . htmlspecialchars( $product_page_title ) . '">' . "\n";
+      echo '<meta name="twitter:image" content="' .
+        $twitter_image_url . '">' . "\n";
+    }
   }
 
   // Yoast
@@ -89,16 +90,15 @@ class Resoc_SIBfWC_Public {
       return;
     }
 
-    $facebook_image_url =
-      Resoc_SIBfWC_Utils::get_facebook_image_url(
-        Resoc_SIBfWC_Utils::get_post_image_url( $post_id )
-      );
+    $facebook_image_url = Resoc_SIBfWC_Utils::get_facebook_image_url( $post_id );
 
-    $wpseo_opengraph_image->add_image( array(
-      'url' => $facebook_image_url,
-      'width' => Resoc_SIBfWC_Public::OG_IMAGE_WIDTH,
-      'height' => Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT
-    ) );
+    if ( $facebook_image_url ) {
+      $wpseo_opengraph_image->add_image( array(
+        'url'    => $facebook_image_url,
+        'width'  => Resoc_SIBfWC_Public::OG_IMAGE_WIDTH,
+        'height' => Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT
+      ) );
+    }
   }
 
   public function add_twitter_image_for_wpseo( ) {
@@ -108,9 +108,7 @@ class Resoc_SIBfWC_Public {
       return;
     }
 
-    return Resoc_SIBfWC_Utils::get_twitter_image_url(
-      Resoc_SIBfWC_Utils::get_post_image_url( $post_id )
-    );
+    return Resoc_SIBfWC_Utils::get_twitter_image_url( $post_id );
   }
 
   public function add_opengraph_image_for_wonderm00ns() {
