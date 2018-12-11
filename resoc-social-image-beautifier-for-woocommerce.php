@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Resoc Social Image Beautifier for WooCommerce
- * Version: 0.0.2
+ * Version: 0.0.3
  * Plugin URI: https://resoc.io/wordpress
  * Description: Beautiful product images on social networks
  * Author: Philippe Bernard
@@ -33,7 +33,7 @@ require_once( 'includes/lib/class-resoc-sibfwc-public.php' );
  * @return object Resoc_SIBfWC
  */
 function Resoc_SIBfWC () {
-	$instance = Resoc_SIBfWC::instance( __FILE__, '0.0.2' );
+	$instance = Resoc_SIBfWC::instance( __FILE__, '0.0.3' );
 
 	return $instance;
 }
