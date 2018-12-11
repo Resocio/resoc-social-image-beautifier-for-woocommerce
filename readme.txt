@@ -50,6 +50,7 @@ Installing "Resoc Social Image Beautifier for WooCommerce" can be done either by
 
 * Support for wonderm00ns-simple-facebook-open-graph-tags
 * Plugin was tested up to WordPress 5.0
+* Reviews average rate support
 
 = 0.0.2 =
 
