@@ -118,8 +118,6 @@ class Resoc_SIBfWC_Public {
       return;
     }
 
-    return Resoc_SIBfWC_Utils::get_facebook_image_url(
-      Resoc_SIBfWC_Utils::get_post_image_url( $post_id )
-    );
+    return Resoc_SIBfWC_Utils::get_facebook_image_url( $post_id );
   }
 }
