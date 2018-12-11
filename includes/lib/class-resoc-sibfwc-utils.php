@@ -104,7 +104,26 @@ class Resoc_SIBfWC_Utils {
       $site_string = 'merchant=' . $site_id . '&';
     }
 
-    return 'http://resoc.io/api/to-' . $social_network . '.jpg?' . $site_string . 'imageUrl=' . $image_url;
+    $product = wc_get_product( $post_id );
+    $stars = NULL;
+    if ( $product ) {
+      $rating_count = $product->get_rating_count();
+      $stars = $product->get_average_rating();
+      error_log(
+        "Product " . $post_id . " has " . $rating_count .
+        " reviews, with an average score of " . $stars
+      );
+      if ( $rating_count <= 0 ) {
+        $stars = NULL;
+      }
+    }
+    else {
+      error_log("Post " . $post_id . " is not a WooCommerce product");
+    }
+
+    return 'http://resoc.io/api/to-' . $social_network . '.jpg' .
+      '?' . $site_string . 'imageUrl=' . $image_url .
+      ( ( $stars !== NULL ) ? '&stars=' . $stars : '' );
   }
 
   public static function is_product( $post_id ) {
