@@ -4,6 +4,12 @@ class Resoc_SIBfWC_Utils {
 		return is_plugin_active( 'wordpress-seo/wp-seo.php' );
   }
 
+  // For Open Graph for Facebook, Google+ and Twitter Card Tags, by webdados/wonderm00n
+  // See https://wordpress.org/plugins/wonderm00ns-simple-facebook-open-graph-tags/
+  public static function is_wonderm00ns_active() {
+		return is_plugin_active( 'wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php' );
+  }
+
   public static function add_image_to_media_library( $image_data, $post_id, $filename = 'og-image.jpg', $attach_id = NULL ) {
     $upload_dir = wp_upload_dir();
 

@@ -13,6 +13,8 @@ class Resoc_SIBfWC_Public {
 		// Disable Jetpack Open Graph markups
     add_filter( 'jetpack_enable_open_graph', '__return_false' );
 
+    $markups_injected = false;
+
     if ( Resoc_SIBfWC_Utils::is_yoast_seo_active() ) {
       add_filter(
         'wpseo_add_opengraph_images',
@@ -22,8 +24,18 @@ class Resoc_SIBfWC_Public {
         'wpseo_twitter_image',
         array( $this, 'add_twitter_image_for_wpseo' )
       );
+      $markups_injected = true;
     }
-    else {
+
+    if ( Resoc_SIBfWC_Utils::is_wonderm00ns_active() ) {
+      $fb_image = add_filter(
+        'fb_og_image',
+        array( $this, 'add_opengraph_image_for_wonderm00ns' )
+      );
+      $markups_injected = true;
+    }
+
+    if ( ! $markups_injected ) {
       add_action( 'wp_head', array( $this, 'add_social_markups' ) );
     }
   }
@@ -87,11 +99,6 @@ class Resoc_SIBfWC_Public {
       'width' => Resoc_SIBfWC_Public::OG_IMAGE_WIDTH,
       'height' => Resoc_SIBfWC_Public::OG_IMAGE_HEIGHT
     ) );
-
-    // TODO: https://wordpress.org/plugins/wonderm00ns-simple-facebook-open-graph-tags/
-    //$user_options = get_option( 'wonderm00n_open_graph_settings' );
-		//if ( isset( $user_options[ 'fb_image_show' ] ) ) ...
-
   }
 
   public function add_twitter_image_for_wpseo( ) {
@@ -102,6 +109,18 @@ class Resoc_SIBfWC_Public {
     }
 
     return Resoc_SIBfWC_Utils::get_twitter_image_url(
+      Resoc_SIBfWC_Utils::get_post_image_url( $post_id )
+    );
+  }
+
+  public function add_opengraph_image_for_wonderm00ns() {
+    $post_id = get_the_ID();
+
+    if ( ! Resoc_SIBfWC_Utils::is_product( $post_id ) ) {
+      return;
+    }
+
+    return Resoc_SIBfWC_Utils::get_facebook_image_url(
       Resoc_SIBfWC_Utils::get_post_image_url( $post_id )
     );
   }
