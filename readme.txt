@@ -3,7 +3,7 @@ Contributors:  resoc
 Donate link: https://resoc.io/donate
 Tags: woocommerce, social, facebook, linkedin, opengraph, metadata, wordpress, plugin
 Requires at least: 4.0
-Tested up to: 5.0-beta5
+Tested up to: 5.0
 Stable tag: 0.0.2
 Requires PHP: 5.2.4
 License: GPLv2 or later
@@ -49,6 +49,7 @@ Installing "Resoc Social Image Beautifier for WooCommerce" can be done either by
 = 0.0.3 =
 
 * Support for wonderm00ns-simple-facebook-open-graph-tags
+* Plugin was tested up to WordPress 5.0
 
 = 0.0.2 =
 
