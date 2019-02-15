@@ -48,6 +48,7 @@ Installing "Resoc Social Image Beautifier for WooCommerce" can be done either by
 
 = 0.0.5 =
 
+* Markup injection optimization
 * Plugin was tested up to WordPress 5.1
 
 = 0.0.4 =

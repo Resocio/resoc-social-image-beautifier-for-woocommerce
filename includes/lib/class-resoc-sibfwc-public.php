@@ -13,8 +13,6 @@ class Resoc_SIBfWC_Public {
 		// Disable Jetpack Open Graph markups
     add_filter( 'jetpack_enable_open_graph', '__return_false' );
 
-    $markups_injected = false;
-
     if ( Resoc_SIBfWC_Utils::is_yoast_seo_active() ) {
       add_filter(
         'wpseo_add_opengraph_images',
@@ -24,7 +22,8 @@ class Resoc_SIBfWC_Public {
         'wpseo_twitter_image',
         array( $this, 'add_twitter_image_for_wpseo' )
       );
-      $markups_injected = true;
+      // Work completed
+      return;
     }
 
     if ( Resoc_SIBfWC_Utils::is_wonderm00ns_active() ) {
@@ -32,12 +31,12 @@ class Resoc_SIBfWC_Public {
         'fb_og_image',
         array( $this, 'add_opengraph_image_for_wonderm00ns' )
       );
-      $markups_injected = true;
+      // Work completed
+      return;
     }
 
-    if ( ! $markups_injected ) {
-      add_action( 'wp_head', array( $this, 'add_social_markups' ) );
-    }
+    // If we are here, it means the markups were not included
+    add_action( 'wp_head', array( $this, 'add_social_markups' ) );
   }
 
   public function add_social_markups() {
